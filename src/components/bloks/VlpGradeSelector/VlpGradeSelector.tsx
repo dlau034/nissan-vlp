@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { storyblokEditable } from "@storyblok/react";
 import { DisplayM, DisplayS, BodyM, BodySLight } from "@/wds/Typography";
@@ -77,6 +77,26 @@ export default function VlpGradeSelector({ blok }: { blok: any }) {
     if (slideWidth === 0) return;
     setCurrentIndex(Math.round(viewport.scrollLeft / slideWidth));
   }, [getSlideWidth]);
+
+
+  // Clamp viewport height to the current card on mobile to eliminate gap below cards
+  const syncViewportHeight = useCallback(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    if (window.innerWidth > 640) {
+      viewport.style.height = "";
+      return;
+    }
+    const cards = Array.from(viewport.querySelectorAll("[data-card]")) as HTMLElement[];
+    const card = cards[currentIndex];
+    if (card) viewport.style.height = `${card.offsetHeight}px`;
+  }, [currentIndex, isExpanded]);
+
+  useEffect(() => {
+    syncViewportHeight();
+    window.addEventListener("resize", syncViewportHeight);
+    return () => window.removeEventListener("resize", syncViewportHeight);
+  }, [syncViewportHeight]);
 
   return (
     <section className={styles.section} {...storyblokEditable(blok)}>
