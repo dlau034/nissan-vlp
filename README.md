@@ -74,9 +74,9 @@ The Qashqai VLP story is built from 11 independently editable Storyblok bloks:
 | # | Blok | Description |
 |---|---|---|
 | 1 | `vlp_banner` | Full-width hero image |
-| 2 | `vlp_intro_specs` | Model name, spec badges, CTA |
+| 2 | `vlp_intro_specs` | Model name, spec badges, up to 2 CTAs (primary / secondary / tertiary variants) |
 | 3 | `vlp_features` | 3-col feature card grid |
-| 4 | `vlp_grade_selector` | Grade/trim comparison cards |
+| 4 | `vlp_grade_selector` | Scroll-snap carousel — MSRP + monthly pricing, expandable features, finance link, compare link, section-level display toggles |
 | 5 | `vlp_colour_selector` | Colour swatch picker |
 | 6 | `vlp_design_highlights` | 3-col highlight card grid |
 | 7 | `vlp_offers` | Finance offer cards |
@@ -84,6 +84,19 @@ The Qashqai VLP story is built from 11 independently editable Storyblok bloks:
 | 9 | `vlp_split_cta` | 2-col image CTA panel |
 | 10 | `vlp_faq` | Accordion FAQ list |
 | 11 | `vlp_next_steps` | Row of primary CTA buttons |
+
+---
+
+## Grade Selector carousel
+
+`VlpGradeSelector` is the most complex component. Key behaviours:
+
+- **Desktop:** 3 cards visible, arrows bottom-right, pagination dots bottom-left (hidden on mobile)
+- **Tablet:** 2 cards visible
+- **Mobile:** 1 card + peek; native CSS scroll-snap swipe; arrows centred; dots hidden
+- **Features:** section-wide expandable bullet list (See more / See less)
+- **Prices:** MSRP and Monthly columns, each with a disclaimer ⓘ icon
+- **Section toggles:** `show_msrp`, `show_monthly`, `show_finance_calculator`, `show_compare`
 
 ---
 
@@ -95,7 +108,23 @@ The Qashqai VLP story is built from 11 independently editable Storyblok bloks:
 | CMS | Storyblok (headless, Visual Editor) |
 | Styling | CSS Modules + Nissan WDS 2.0 tokens |
 | Language | TypeScript |
-| HTTPS proxy | local-ssl-proxy |
+| Hosting | Vercel (auto-deploy on push to `master`) |
+| HTTPS proxy | local-ssl-proxy (dev only) |
+
+---
+
+## Deployment URLs
+
+| Environment | URL |
+|---|---|
+| Local dev | `https://localhost:3010` |
+| Staging | `https://nissan-43uf7yuu0-david-laus-projects-6c554b32.vercel.app` |
+| Production | `https://nissan-vlp.vercel.app` |
+
+```bash
+vercel          # staging preview
+vercel --prod   # promote to production
+```
 
 ---
 
@@ -105,7 +134,8 @@ Create a `.env.local` file in the project root:
 
 ```env
 NEXT_PUBLIC_STORYBLOK_TOKEN=your_preview_token_here
-STORYBLOK_SPACE_ID=your_space_id_here
+STORYBLOK_PREVIEW_TOKEN=your_preview_token_here
+STORYBLOK_PREVIEW_SECRET=your_random_secret_here
 ```
 
 > Never commit `.env.local` — it is gitignored.

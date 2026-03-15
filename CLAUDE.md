@@ -90,6 +90,16 @@ Child bloks (e.g. `vlp_spec_badge` inside `vlp_intro_specs`) do **not** need to 
 registered in `StoryblokProvider` or `storyblok.ts`. They are rendered directly by
 their parent component using the raw `blok` data — no `StoryblokComponent` wrapper.
 
+### `"use client"` vs RSC imports
+
+| Component type | `storyblokEditable` import |
+|---|---|
+| RSC (no `"use client"`) | `@storyblok/react/rsc` |
+| Client component (`"use client"`) | `@storyblok/react` |
+
+Using the wrong import causes a build error. `VlpGradeSelector` is a client component
+(uses `useState`/`useRef`) and must import from `@storyblok/react`.
+
 ---
 
 ## Storyblok component whitelist
@@ -109,6 +119,29 @@ Add new blok name to component_whitelist[]
 
 ## Styling rules
 
+### WDS grid padding — always on `.inner`
+
+All section components follow this pattern:
+
+```css
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 120px;   /* desktop */
+}
+
+@media (max-width: 1024px) {
+  .inner { padding: 0 40px; }   /* tablet */
+}
+
+@media (max-width: 640px) {
+  .inner { padding: 0 24px; }   /* mobile */
+}
+```
+
+Never add horizontal padding to individual child elements (header, bottom bar, etc.) —
+all gutters come from `.inner`.
+
 ### Always use WDS tokens
 All CSS must use `var(--wds-*)` custom properties from `src/wds/tokens.css`.
 Never hardcode brand colours — exception: Figma-specific background tones
@@ -125,11 +158,24 @@ Key tokens:
 --wds-font-weight-light: 300
 ```
 
-### Typography components
-Import from `@/wds/Typography` — never set font sizes manually:
-```tsx
-import { DisplayXL, DisplayM, DisplayS, BodyMLight, BodyS } from "@/wds/Typography";
+WDS button tokens:
+```css
+--wds-type-action-button-size     /* 16px */
+--wds-type-action-button-line
+--wds-type-action-button-spacing
 ```
+
+WDS primary pill button: `border-radius: 40px; padding: 12px 30px`.
+
+### Typography components
+Import from `@/wds/Typography` — never set font sizes manually.
+
+**Confirmed exports:**
+```tsx
+import { DisplayXL, DisplayM, DisplayS, BodyM, BodyMLight, BodySLight, BodyS } from "@/wds/Typography";
+```
+
+All components accept `as` and `className` props.
 
 ### storyblokEditable
 Every blok's root element must spread `{...storyblokEditable(blok)}` for
@@ -137,6 +183,63 @@ click-to-edit in the Visual Editor:
 ```tsx
 <section className={styles.section} {...storyblokEditable(blok)}>
 ```
+
+---
+
+## VlpGradeSelector — carousel implementation notes
+
+### Architecture
+- `"use client"` component (requires `useState`, `useRef`, `useEffect`)
+- CSS scroll-snap carousel: `overflow-x: scroll; scroll-snap-type: x mandatory` on viewport
+- Cards use `scroll-snap-align: start`
+- Native mobile swipe works automatically; `handleScroll` tracks position via `Math.round(scrollLeft / slideWidth)`
+
+### Card sizing
+```css
+/* Desktop: 3 cards */
+flex: 0 0 calc((100% - 80px) / 3);   /* 2 × 40px gaps */
+
+/* Tablet ≤1024px: 2 cards */
+flex: 0 0 calc((100% - 24px) / 2);   /* 1 × 24px gap */
+
+/* Mobile ≤640px: 1 card + peek */
+flex: 0 0 calc(100% - 40px);
+```
+
+### Mobile viewport height fix
+All cards render in the DOM simultaneously (required for native swipe). This causes
+the viewport to be as tall as the tallest card, leaving a gap below shorter cards.
+
+Fix: `syncViewportHeight()` in the component measures `cards[currentIndex].offsetHeight`
+and sets it as `viewport.style.height` inline — only on `window.innerWidth <= 640`.
+Clears the inline style on wider screens. Runs on `currentIndex`, `isExpanded`, and
+`window resize`.
+
+### Pagination dots (desktop only)
+Figma design: horizontal bars, not circles.
+- `2px` tall, `flex: 1 0 0` (equal width), `8px` gap
+- `opacity: 0.3` inactive, `opacity: 1` active
+- `.dots` container: `flex: 0 0 300px`
+- Hidden on mobile (`display: none` at `≤640px`)
+
+### Section-level toggles (Storyblok fields on `vlp_grade_selector`)
+| Field | Type | Controls |
+|---|---|---|
+| `show_msrp` | boolean | MSRP price column |
+| `show_monthly` | boolean | Monthly price column |
+| `show_finance_calculator` | boolean | Finance Calculator link per card |
+| `show_compare` | boolean | Compare link per card |
+
+### `vlp_grade_card` schema fields
+`grade_name`, `image`, `price` (MSRP), `msrp_label`, `monthly_price`, `monthly_label`,
+`features` (textarea, newline-separated), `compare_label`, `compare_url`,
+`finance_label`, `finance_url`, `disclaimer_text`, `cta_label`, `cta_url`, `spec_tags`
+
+### Storyblok component IDs
+| Component | ID |
+|---|---|
+| `vlp_grade_selector` | 154682832042160 |
+| `vlp_grade_card` | 154682789472424 |
 
 ---
 
@@ -149,6 +252,7 @@ click-to-edit in the Visual Editor:
 | VLP Intro Specs | `3687:83160` |
 | Features | `3687:83200` |
 | Grade Selector | `3687:83242` |
+| Grade Selector — pagination | `12697-137065` |
 | Colour Selector | `3687:83280` |
 | Design Highlights | `3687:83356` |
 | Offers | `3687:83386` |
