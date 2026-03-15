@@ -212,33 +212,36 @@
   color: var(--wds-color-action-hover-onlight);
 }
 
-/* ─── Bottom bar: dots (left) + arrows (right) ─── */
+/* ─── Bottom bar: dots (left, flex-grow) + arrows (right) ─── */
 .bottomBar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 24px;
 }
 
 .dots {
   display: flex;
+  flex: 1;
   gap: 8px;
   align-items: center;
 }
 
+/* Each dash: equal share of available width, 2px tall bar */
 .dot,
 .dotActive {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: 2px solid var(--wds-color-nissan-black);
-  background: transparent;
+  flex: 1 0 0;
+  height: 2px;
+  background: var(--wds-color-nissan-black);
+  opacity: 0.3;
+  border: none;
+  border-radius: 1px;
   padding: 0;
   cursor: pointer;
-  transition: background-color 150ms;
+  transition: opacity 150ms;
 }
 
 .dotActive {
-  background: var(--wds-color-nissan-black);
+  opacity: 1;
 }
 
 .navArrows {
