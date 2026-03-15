@@ -116,7 +116,6 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  flex: 1;
 }
 
 .featureList {
@@ -317,5 +316,6 @@
 
   .track {
     gap: 16px;
+    align-items: flex-start;
   }
 }
