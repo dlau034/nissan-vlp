@@ -161,6 +161,47 @@ Use `mcp__Figma__get_design_context` with these IDs to re-check designs.
 
 ---
 
+## Storyblok data fetching — do NOT use getStoryblokApi()
+
+**Rule:** Always use a direct `fetch()` call to the Storyblok CDN REST API.
+Never use `getStoryblokApi()` from `@storyblok/react/rsc` for data fetching.
+
+**Why:** `getStoryblokApi()` depends on `storyblokInit` having been called and its
+state surviving the serverless cold-start lifecycle. In Vercel's serverless
+environment this fails silently — the catch block returns `null`, `notFound()` fires,
+and the page returns a **404 with no error logged**.
+
+**Correct pattern (`src/app/[[...slug]]/page.tsx`):**
+
+```ts
+async function fetchStory(slug: string, isDraft: boolean) {
+  const token = process.env.NEXT_PUBLIC_STORYBLOK_TOKEN;
+  const version = isDraft || process.env.NODE_ENV === "development" ? "draft" : "published";
+
+  try {
+    const res = await fetch(
+      `https://api.storyblok.com/v2/cdn/stories/${slug}?token=${token}&version=${version}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) {
+      console.error("[fetchStory] HTTP error:", res.status, res.statusText, "slug:", slug);
+      return null;
+    }
+    const data = await res.json();
+    return data.story ?? null;
+  } catch (err) {
+    console.error("[fetchStory] fetch failed for slug:", slug, err);
+    return null;
+  }
+}
+```
+
+`storyblokInit` is still called (via `import "@/lib/storyblok"`) for component
+registration — `StoryblokStory` needs it to resolve `vlp_page` → `VlpPage`.
+Only the HTTP data fetch bypasses the SDK.
+
+---
+
 ## Deployment URLs
 
 | Environment | URL | Purpose |
