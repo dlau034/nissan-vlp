@@ -16,7 +16,6 @@
 .title {
   color: var(--wds-color-nissan-black);
   text-align: center;
-  /* DisplayM: 32px / Regular / 1.5px — from WDS Typography */
 }
 
 /* CTA row — 4 equal-width buttons spanning full width */
@@ -26,21 +25,19 @@
   width: 100%;
 }
 
-/* === WDS Primary button — black fill, white text, 100px pill === */
+/* === WDS Primary pill button — standard size (16px, not mobile 12px) === */
 .btn {
   flex: 1 0 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 1px;
-  min-width: 1px;
-  padding: 12px 40px;
-  border-radius: 100px;
+  padding: 12px 30px;
+  border-radius: 40px;
   background: var(--wds-color-nissan-black);
   color: var(--wds-color-nissan-white);
   font-family: var(--wds-font-family-nissan);
-  font-size: 13px;
-  line-height: 24px;
+  font-size: var(--wds-type-action-button-size);       /* 16px */
+  line-height: var(--wds-type-action-button-line);     /* 24px */
   letter-spacing: var(--wds-type-action-button-spacing); /* 2px */
   font-weight: var(--wds-font-weight-bold);
   text-transform: uppercase;
