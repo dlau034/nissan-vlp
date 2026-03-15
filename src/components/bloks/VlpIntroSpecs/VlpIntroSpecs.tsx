@@ -2,13 +2,34 @@ import { storyblokEditable } from "@storyblok/react/rsc";
 import { DisplayXL, DisplayM, BodyMLight } from "@/wds/Typography";
 import styles from "./VlpIntroSpecs.module.css";
 
+function CtaButton({ label, url, variant }: { label: string; url: any; variant: string }) {
+  const href = url?.url || url?.cached_url || "#";
+
+  if (variant === "tertiary") {
+    return (
+      <a href={href} className={`${styles.ctaBase} ${styles.ctaTertiary}`}>
+        <span>{label}</span>
+        <span className={styles.ctaTertiaryUnderline} aria-hidden="true" />
+      </a>
+    );
+  }
+
+  const variantClass = variant === "secondary" ? styles.ctaSecondary : styles.ctaPrimary;
+  return (
+    <a href={href} className={`${styles.ctaBase} ${variantClass}`}>
+      {label}
+    </a>
+  );
+}
+
 export default function VlpIntroSpecs({ blok }: { blok: any }) {
-  const ctaHref = blok.cta_url?.url || blok.cta_url?.cached_url || "#";
+  const cta1Variant = blok.cta_variant || "primary";
+  const cta2Variant = blok.cta2_variant || "primary";
 
   return (
     <section className={styles.specs} {...storyblokEditable(blok)}>
       <div className={styles.specsInner}>
-        {/* Left: model name, description, CTA */}
+        {/* Left: model name, description, CTA(s) */}
         <div className={styles.specsLeft}>
           {blok.model_name && (
             <DisplayXL as="h1" className={styles.modelName}>
@@ -20,10 +41,15 @@ export default function VlpIntroSpecs({ blok }: { blok: any }) {
               {blok.description}
             </BodyMLight>
           )}
-          {blok.cta_label && (
-            <a href={ctaHref} className={styles.cta}>
-              {blok.cta_label}
-            </a>
+          {(blok.cta_label || blok.cta2_label) && (
+            <div className={styles.ctaRow}>
+              {blok.cta_label && (
+                <CtaButton label={blok.cta_label} url={blok.cta_url} variant={cta1Variant} />
+              )}
+              {blok.cta2_label && (
+                <CtaButton label={blok.cta2_label} url={blok.cta2_url} variant={cta2Variant} />
+              )}
+            </div>
           )}
         </div>
 

@@ -28,35 +28,103 @@
   color: var(--wds-color-nissan-black);
 }
 
-/* WDS Primary CTA — black pill button */
-.cta {
-  align-self: flex-start;
-  display: inline-flex;
+/* CTA row wrapping one or two buttons */
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   align-items: center;
-  justify-content: center;
-  padding: 12px 40px;
-  border-radius: 100px;
-  background: var(--wds-color-nissan-black);
-  color: var(--wds-color-nissan-white);
+}
+
+/* ─── Shared base — layout + typography for all CTA variants ─── */
+.ctaBase {
   font-family: var(--wds-font-family-nissan);
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 2px;
+  font-size: var(--wds-type-action-button-size);       /* 16px */
+  line-height: var(--wds-type-action-button-line);     /* 24px */
+  letter-spacing: var(--wds-type-action-button-spacing); /* 2px */
   font-weight: var(--wds-font-weight-bold);
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
-  transition: background-color 200ms;
+  transition: all 200ms;
   white-space: nowrap;
 }
 
-.cta:hover {
+/* ─── Primary — black fill pill ─── */
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 30px;
+  border-radius: 40px;
+  background: var(--wds-color-nissan-black);
+  color: var(--wds-color-nissan-white);
+}
+
+.ctaPrimary:hover {
   background-color: var(--wds-color-action-hover-onlight);
 }
 
-.cta:focus-visible {
+.ctaPrimary:focus-visible {
   outline: none;
   box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+/* ─── Secondary — outlined pill ─── */
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 30px;
+  border-radius: 40px;
+  background: transparent;
+  color: var(--wds-color-nissan-black);
+  box-shadow: inset 0 0 0 2px var(--wds-color-nissan-black);
+}
+
+.ctaSecondary:hover {
+  box-shadow: inset 0 0 0 4px var(--wds-color-nissan-black);
+}
+
+.ctaSecondary:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--wds-color-nissan-black),
+              0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+/* ─── Tertiary — text + animated underline bar ─── */
+.ctaTertiary {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding-top: 11px;
+  padding-bottom: 3px;
+  background: transparent;
+  color: var(--wds-color-nissan-black);
+}
+
+.ctaTertiary:hover {
+  color: var(--wds-color-action-hover-onlight);
+}
+
+.ctaTertiary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+  border-radius: 2px;
+}
+
+.ctaTertiaryUnderline {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--wds-color-nissan-black);
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.ctaTertiary:hover .ctaTertiaryUnderline {
+  opacity: 0;
 }
 
 /* Right column: spec grid */
