@@ -228,6 +228,7 @@ export default function VlpGradeSelector({ blok }: { blok: any }) {
             ))}
           </div>
           <div className={styles.navArrows}>
+            {/* Left arrow — right arrow SVG flipped horizontally */}
             <button
               type="button"
               className={styles.arrowBtn}
@@ -235,16 +236,23 @@ export default function VlpGradeSelector({ blok }: { blok: any }) {
               onClick={handlePrev}
               disabled={currentIndex === 0}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <svg
+                width="24"
+                height="8"
+                viewBox="0 0 47 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+                style={{ transform: "scaleX(-1)" }}
+              >
                 <path
-                  d="M15 18l-6-6 6-6"
+                  d="M0 7.68408H45M45 7.68408L38.4375 0.684082M45 7.68408L38.4375 14.6841"
                   stroke="currentColor"
                   strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
                 />
               </svg>
             </button>
+            {/* Right arrow */}
             <button
               type="button"
               className={styles.arrowBtn}
@@ -252,13 +260,18 @@ export default function VlpGradeSelector({ blok }: { blok: any }) {
               onClick={handleNext}
               disabled={currentIndex === total - 1}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <svg
+                width="24"
+                height="8"
+                viewBox="0 0 47 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
                 <path
-                  d="M9 18l6-6-6-6"
+                  d="M0 7.68408H45M45 7.68408L38.4375 0.684082M45 7.68408L38.4375 14.6841"
                   stroke="currentColor"
                   strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
                 />
               </svg>
             </button>
