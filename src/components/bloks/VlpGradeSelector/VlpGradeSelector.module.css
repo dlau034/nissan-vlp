@@ -309,6 +309,10 @@
     align-items: center;
   }
 
+  .dots {
+    display: none;
+  }
+
   .card {
     /* Mobile: 1 card + 20px peek of next card */
     flex: 0 0 calc(100% - 40px);
