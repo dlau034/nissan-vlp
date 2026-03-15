@@ -161,11 +161,39 @@ Use `mcp__Figma__get_design_context` with these IDs to re-check designs.
 
 ---
 
+## Deployment URLs
+
+| Environment | URL | Purpose |
+|---|---|---|
+| **Local dev** | `https://localhost:3010` | Day-to-day development |
+| **Staging** | `https://nissan-43uf7yuu0-david-laus-projects-6c554b32.vercel.app` | Preview deployments (auto on every push) |
+| **Production** | `https://nissan-vlp.vercel.app` | Live site (`vercel --prod`) |
+
+All three are registered as preview environments in Storyblok.
+To switch environments in the Visual Editor: click the environment dropdown (top-right of the editor toolbar).
+
+### Deploying
+
+```bash
+# Staging preview (creates a new preview URL)
+vercel
+
+# Promote to production
+vercel --prod
+```
+
+Vercel is connected to GitHub (`dlau034/nissan-vlp`) and will auto-build
+every push to `master` as a preview deployment.
+
+---
+
 ## Environment variables
 
 ```
-NEXT_PUBLIC_STORYBLOK_TOKEN=   # Preview token (public)
-STORYBLOK_SPACE_ID=            # Space ID
+NEXT_PUBLIC_STORYBLOK_TOKEN=   # Preview token (public, safe to expose)
+STORYBLOK_PREVIEW_TOKEN=       # Preview token (same value for this POC)
+STORYBLOK_PREVIEW_SECRET=      # Random secret for draft mode API
 ```
 
 Stored in `.env.local` (gitignored). Never commit this file.
+All three are also set in Vercel for both production and preview environments.
