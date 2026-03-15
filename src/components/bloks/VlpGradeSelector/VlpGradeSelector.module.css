@@ -250,19 +250,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 2px solid var(--wds-color-nissan-black);
-  background: var(--wds-color-nissan-white);
+  background: none;
+  border: none;
+  padding: 4px;
   color: var(--wds-color-nissan-black);
   cursor: pointer;
-  transition: background-color 200ms, color 200ms;
+  transition: color 200ms;
 }
 
 .arrowBtn:hover:not(:disabled) {
-  background: var(--wds-color-nissan-black);
-  color: var(--wds-color-nissan-white);
+  color: var(--wds-color-action-hover-onlight);
 }
 
 .arrowBtn:disabled {
@@ -273,6 +270,7 @@
 
 .arrowBtn:focus-visible {
   outline: none;
+  border-radius: 2px;
   box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
 }
 
