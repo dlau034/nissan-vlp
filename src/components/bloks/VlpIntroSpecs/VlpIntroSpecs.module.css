@@ -1,6 +1,6 @@
 .specs {
   background: var(--wds-color-nissan-white);
-  padding: 80px 0;
+  padding: 64px 0;
 }
 
 .specsInner {
@@ -161,7 +161,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 640px) {
   .specs {
     padding: 48px 0;
   }
