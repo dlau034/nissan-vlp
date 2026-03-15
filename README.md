@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nissan VLP — Storyblok POC
 
-## Getting Started
+A Next.js proof-of-concept for the Nissan Qashqai Vehicle Landing Page (VLP),
+powered by Storyblok as a headless CMS and styled with the Nissan WDS 2.0 design system.
 
-First, run the development server:
+---
+
+## Getting started
+
+### Prerequisites
+
+- Node.js 18+
+- A Storyblok account with the POC space set up
+- `.env.local` with your Storyblok preview token
+
+### Install
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Run locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Two terminals are required:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+# Terminal 1 — Next.js dev server
+npm run dev
 
-## Learn More
+# Terminal 2 — HTTPS proxy (required for Storyblok Visual Editor)
+npx local-ssl-proxy --source 3010 --target 3000
+```
 
-To learn more about Next.js, take a look at the following resources:
+Open **https://localhost:3010** in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> ⚠️ The Storyblok Visual Editor requires HTTPS. Always use port **3010**, not 3000.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Project structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/                        # Next.js App Router pages
+│   └── [[...slug]]/page.tsx    # Dynamic catch-all route (Storyblok)
+├── components/
+│   ├── bloks/                  # One folder per Storyblok blok
+│   │   ├── VlpBanner/
+│   │   ├── VlpIntroSpecs/
+│   │   ├── VlpFeatures/
+│   │   ├── VlpGradeSelector/
+│   │   ├── VlpColourSelector/
+│   │   ├── VlpDesignHighlights/
+│   │   ├── VlpOffers/
+│   │   ├── VlpEditorial/
+│   │   ├── VlpSplitCta/
+│   │   ├── VlpFaq/
+│   │   ├── VlpNextSteps/
+│   │   └── VlpPage/            # Root page blok — dispatches body[] sections
+│   └── StoryblokProvider.tsx   # Client-side blok registry (Visual Editor)
+├── lib/
+│   └── storyblok.ts            # Server-side blok registry (RSC fetch)
+└── wds/
+    ├── tokens.css              # Nissan WDS 2.0 design tokens
+    └── Typography.tsx          # WDS typography components
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## Page sections
+
+The Qashqai VLP story is built from 11 independently editable Storyblok bloks:
+
+| # | Blok | Description |
+|---|---|---|
+| 1 | `vlp_banner` | Full-width hero image |
+| 2 | `vlp_intro_specs` | Model name, spec badges, CTA |
+| 3 | `vlp_features` | 3-col feature card grid |
+| 4 | `vlp_grade_selector` | Grade/trim comparison cards |
+| 5 | `vlp_colour_selector` | Colour swatch picker |
+| 6 | `vlp_design_highlights` | 3-col highlight card grid |
+| 7 | `vlp_offers` | Finance offer cards |
+| 8 | `vlp_editorial` | Image + text editorial panel |
+| 9 | `vlp_split_cta` | 2-col image CTA panel |
+| 10 | `vlp_faq` | Accordion FAQ list |
+| 11 | `vlp_next_steps` | Row of primary CTA buttons |
+
+---
+
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 16 (App Router, Turbopack) |
+| CMS | Storyblok (headless, Visual Editor) |
+| Styling | CSS Modules + Nissan WDS 2.0 tokens |
+| Language | TypeScript |
+| HTTPS proxy | local-ssl-proxy |
+
+---
+
+## Environment variables
+
+Create a `.env.local` file in the project root:
+
+```env
+NEXT_PUBLIC_STORYBLOK_TOKEN=your_preview_token_here
+STORYBLOK_SPACE_ID=your_space_id_here
+```
+
+> Never commit `.env.local` — it is gitignored.
+
+---
+
+## Troubleshooting
+
+### "Jest worker exceeded retry limit" (Turbopack crash)
+
+```bash
+# Stop the dev server, then:
+rm -rf .next        # bash/WSL
+# or
+Remove-Item -Recurse -Force .next   # PowerShell
+
+npm run dev
+```
+
+Deleting the `.next` cache clears corrupted Turbopack build artefacts.
+See `CLAUDE.md` for full developer notes.
+
+### Visual Editor not loading
+
+- Ensure the HTTPS proxy (`local-ssl-proxy`) is running on port 3010
+- Check the Storyblok space domain is set to `https://localhost:3010/`
+- Accept the self-signed certificate warning in the browser first

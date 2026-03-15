@@ -1,0 +1,106 @@
+.specs {
+  background: var(--wds-color-nissan-white);
+  padding: 80px 0;
+}
+
+.specsInner {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 120px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* Left column */
+.specsLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.modelName {
+  color: var(--wds-color-nissan-black);
+}
+
+.description {
+  color: var(--wds-color-nissan-black);
+}
+
+/* WDS Primary CTA — black pill button */
+.cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 40px;
+  border-radius: 100px;
+  background: var(--wds-color-nissan-black);
+  color: var(--wds-color-nissan-white);
+  font-family: var(--wds-font-family-nissan);
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 2px;
+  font-weight: var(--wds-font-weight-bold);
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 200ms;
+  white-space: nowrap;
+}
+
+.cta:hover {
+  background-color: var(--wds-color-action-hover-onlight);
+}
+
+.cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+/* Right column: spec grid */
+.specGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px 100px;
+}
+
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.specValue {
+  color: var(--wds-color-nissan-black);
+}
+
+.specLabel {
+  color: var(--wds-color-nissan-black);
+}
+
+/* === Responsive === */
+@media (max-width: 1024px) {
+  .specsInner {
+    padding: 0 40px;
+    gap: 48px;
+  }
+
+  .specGrid {
+    gap: 32px 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .specs {
+    padding: 48px 0;
+  }
+
+  .specsInner {
+    padding: 0 24px;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}

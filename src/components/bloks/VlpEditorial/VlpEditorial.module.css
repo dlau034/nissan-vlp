@@ -1,0 +1,91 @@
+.section {
+  background: #f8f8f9;
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 480px;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--wds-color-nissan-grey);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.content {
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: var(--wds-type-subtitle-s-spacing);
+  color: var(--wds-color-nissan-black);
+}
+
+.headline {
+  color: var(--wds-color-nissan-black);
+}
+
+.body {
+  color: var(--wds-color-nissan-black);
+}
+
+/* Arrow text link — not a pill button per Figma */
+.cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--wds-color-nissan-black);
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-body-s-size);
+  line-height: var(--wds-type-body-s-line);
+  font-weight: var(--wds-font-weight-bold);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: var(--wds-type-subtitle-s-spacing);
+  transition: color 200ms;
+}
+
+.cta:hover {
+  color: var(--wds-color-action-hover-onlight);
+}
+
+.cta:focus-visible {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+@media (min-width: 1024px) {
+  .section {
+    grid-template-columns: 1fr 1fr;
+    min-height: 600px;
+  }
+
+  .imageWrap {
+    aspect-ratio: unset;
+  }
+
+  /* image_side: right — swap order */
+  .imageRight .imageWrap {
+    order: 2;
+  }
+
+  .imageRight .content {
+    order: 1;
+  }
+
+  .content {
+    padding: 80px;
+  }
+}

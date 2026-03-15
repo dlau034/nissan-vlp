@@ -1,0 +1,220 @@
+/* Nissan WDS 2.0 Button — CSS Module */
+
+/* === Shared === */
+.fullWidth {
+  width: 100%;
+}
+
+/* === Pill base (Primary & Secondary) === */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-action-button-size);
+  line-height: var(--wds-type-action-button-line);
+  letter-spacing: var(--wds-type-action-button-spacing);
+  font-weight: var(--wds-font-weight-bold);
+  text-transform: uppercase;
+  border-radius: 40px;
+  padding: 12px 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.pill:focus-visible {
+  outline: none;
+}
+
+.pill:disabled {
+  cursor: not-allowed;
+}
+
+/* Primary Light */
+.primaryLight {
+  background-color: var(--wds-color-nissan-black);
+  color: var(--wds-color-nissan-white);
+}
+
+.primaryLight:hover:not(:disabled) {
+  background-color: var(--wds-color-action-hover-onlight);
+}
+
+.primaryLight:focus-visible {
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+.primaryLight:disabled {
+  background-color: var(--wds-color-action-disabled-onlight);
+  color: var(--wds-color-nissan-grey);
+}
+
+/* Primary Dark */
+.primaryDark {
+  background-color: var(--wds-color-nissan-white);
+  color: var(--wds-color-nissan-black);
+}
+
+.primaryDark:hover:not(:disabled) {
+  background-color: var(--wds-color-action-hover-ondark);
+}
+
+.primaryDark:focus-visible {
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-ondark);
+}
+
+.primaryDark:disabled {
+  background-color: var(--wds-color-action-disabled-ondark);
+  color: var(--wds-color-action-disabled-onlight);
+}
+
+/* Secondary Light */
+.secondaryLight {
+  background-color: transparent;
+  color: var(--wds-color-nissan-black);
+  box-shadow: inset 0 0 0 2px var(--wds-color-nissan-black);
+}
+
+.secondaryLight:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 4px var(--wds-color-nissan-black);
+}
+
+.secondaryLight:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--wds-color-nissan-black), 0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+.secondaryLight:disabled {
+  color: var(--wds-color-action-disabled-onlight);
+  box-shadow: inset 0 0 0 2px var(--wds-color-action-disabled-onlight);
+}
+
+/* Secondary Dark */
+.secondaryDark {
+  background-color: transparent;
+  color: var(--wds-color-nissan-white);
+  box-shadow: inset 0 0 0 2px var(--wds-color-nissan-white);
+}
+
+.secondaryDark:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 4px var(--wds-color-nissan-white);
+}
+
+.secondaryDark:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--wds-color-nissan-white), 0 0 0 4px var(--wds-color-action-focus-ondark);
+}
+
+.secondaryDark:disabled {
+  color: var(--wds-color-action-disabled-ondark);
+  box-shadow: inset 0 0 0 2px var(--wds-color-action-disabled-ondark);
+}
+
+/* === Tertiary base === */
+.tertiary {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-bottom: 3px;
+  padding-top: 11px;
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-action-button-size);
+  line-height: var(--wds-type-action-button-line);
+  letter-spacing: var(--wds-type-action-button-spacing);
+  font-weight: var(--wds-font-weight-bold);
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+.tertiary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+  border-radius: 2px;
+}
+
+.tertiary:disabled {
+  cursor: not-allowed;
+}
+
+/* Tertiary Light */
+.tertiaryLight {
+  color: var(--wds-color-nissan-black);
+}
+
+.tertiaryLight:hover:not(:disabled) {
+  color: var(--wds-color-action-hover-onlight);
+}
+
+.tertiaryLight:focus-visible {
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+.tertiaryLight:disabled {
+  color: var(--wds-color-action-disabled-onlight);
+}
+
+/* Tertiary Dark */
+.tertiaryDark {
+  color: var(--wds-color-nissan-white);
+}
+
+.tertiaryDark:hover:not(:disabled) {
+  color: var(--wds-color-action-hover-ondark);
+}
+
+.tertiaryDark:focus-visible {
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-ondark);
+}
+
+.tertiaryDark:disabled {
+  color: var(--wds-color-action-disabled-ondark);
+}
+
+/* Underline bar (tertiary) */
+.underline {
+  height: 2px;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+
+.underlineLight {
+  background-color: var(--wds-color-nissan-black);
+}
+
+.underlineDark {
+  background-color: var(--wds-color-nissan-white);
+}
+
+.tertiary:hover:not(:disabled) .underline {
+  opacity: 0; /* hide without affecting layout — prevents jump */
+}
+
+.tertiaryLight:disabled .underlineLight {
+  background-color: var(--wds-color-action-disabled-onlight);
+}
+
+.tertiaryDark:disabled .underlineDark {
+  background-color: var(--wds-color-action-disabled-ondark);
+}
+
+/* === Mobile size modifier (Restricted Use) === */
+/* Only for dense mobile contexts — consult WDS governance before use. */
+.pillMobile {
+  font-size: var(--wds-type-action-filter-size);
+  line-height: var(--wds-type-action-filter-line);
+  letter-spacing: var(--wds-type-action-filter-spacing);
+  padding: 6px 20px 8px;
+}
+
+.tertiaryMobile {
+  font-size: var(--wds-type-action-filter-size);
+  line-height: var(--wds-type-action-filter-line);
+  letter-spacing: var(--wds-type-action-filter-spacing);
+  gap: 4px;
+  padding-top: 5px;
+  padding-bottom: 3px;
+}

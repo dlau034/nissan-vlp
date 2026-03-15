@@ -1,0 +1,39 @@
+.section {
+  background: var(--wds-color-nissan-white);
+  padding: 64px 120px;
+}
+
+/* Inner card — grey bg, rounded, padded (Figma) */
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: #f8f8f9;
+  border-radius: 10px;
+  padding: 40px;
+}
+
+.title {
+  color: var(--wds-color-nissan-black);
+  margin-bottom: 32px;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 64px 40px;
+  }
+
+  .inner {
+    padding: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 48px 24px;
+  }
+
+  .inner {
+    padding: 24px;
+    border-radius: 8px;
+  }
+}

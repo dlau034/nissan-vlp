@@ -1,0 +1,261 @@
+/**
+ * Nissan WDS 2.0 Design Tokens
+ * CSS Custom Properties for use in any project
+ */
+
+/* === FONTS — declared in globals.css via /public === */
+
+:root {
+  /* === COLORS === */
+  
+  /* Brand Colors */
+  --wds-color-nissan-black: #000000;
+  --wds-color-nissan-white: #FFFFFF;
+  --wds-color-nissan-grey: #EFEFEF;
+  
+  /* Validation */
+  --wds-color-validation-success-onlight: #0A8035;
+  --wds-color-validation-success-ondark: #0EBE4F;
+  --wds-color-validation-error-onlight: #E00034;
+  --wds-color-validation-error-ondark: #FF85A1;
+  
+  /* Notification Backgrounds */
+  --wds-color-notification-success: #E7F2EB;
+  --wds-color-notification-error: #F5E7EA;
+  --wds-color-notification-info: #EFEFEF;
+  --wds-color-notification-offer: #E5F1F7;
+  
+  /* Action States */
+  --wds-color-action-hover-onlight: #4C4C4C;
+  --wds-color-action-hover-ondark: #CCCCCC;
+  --wds-color-action-focus-onlight: #5485F0;
+  --wds-color-action-focus-ondark: #5485F0;
+  --wds-color-action-disabled-onlight: #CCCCCC;
+  --wds-color-action-disabled-ondark: #4C4C4C;
+  
+  /* Graphical Elements */
+  --wds-color-keyline-onlight: #CCCCCC;
+  --wds-color-keyline-ondark: #4C4C4C;
+  --wds-color-offers: #0076AB;
+  
+  /* Background */
+  --wds-color-background-grey: #F6F6F6;
+  
+  /* === TYPOGRAPHY === */
+  
+  /* Font Families */
+  --wds-font-family-nissan: "Nissan Brand", system-ui, sans-serif;
+  --wds-font-family-nissan-jp: "Shin Go Pro", sans-serif;
+  
+  /* Font Weights */
+  --wds-font-weight-light: 300;
+  --wds-font-weight-regular: 400;
+  --wds-font-weight-bold: 700;
+  
+  /* Display Typography */
+  --wds-type-display-xs-size: 20px;
+  --wds-type-display-xs-line: 26px;
+  --wds-type-display-xs-spacing: 1.5px;
+  
+  --wds-type-display-s-size: 24px;
+  --wds-type-display-s-line: 34px;
+  --wds-type-display-s-spacing: 1.5px;
+  
+  --wds-type-display-m-size: 32px;
+  --wds-type-display-m-line: 42px;
+  --wds-type-display-m-spacing: 1.5px;
+  
+  --wds-type-display-l-size: 42px;
+  --wds-type-display-l-line: 52px;
+  --wds-type-display-l-spacing: 1.5px;
+  
+  --wds-type-display-xl-size: 68px;
+  --wds-type-display-xl-line: 78px;
+  --wds-type-display-xl-spacing: 1.5px;
+  
+  /* Subtitle Typography */
+  --wds-type-subtitle-s-size: 14px;
+  --wds-type-subtitle-s-line: 24px;
+  --wds-type-subtitle-s-spacing: 2px;
+  
+  --wds-type-subtitle-m-size: 16px;
+  --wds-type-subtitle-m-line: 26px;
+  --wds-type-subtitle-m-spacing: 2px;
+  
+  /* Body Typography - Medium */
+  --wds-type-body-m-size: 16px;
+  --wds-type-body-m-line: 26px;
+  --wds-type-body-m-spacing: 0.9px;
+  
+  /* Body Typography - Small */
+  --wds-type-body-s-size: 14px;
+  --wds-type-body-s-line: 24px;
+  --wds-type-body-s-spacing: 0.9px;
+  
+  /* Disclaimer Typography */
+  --wds-type-disclaimer-size: 12px;
+  --wds-type-disclaimer-line: 18px;
+  --wds-type-disclaimer-spacing: 0.9px;
+  
+  /* Action Typography */
+  --wds-type-action-button-size: 16px;
+  --wds-type-action-button-line: 24px;
+  --wds-type-action-button-spacing: 2px;
+
+  --wds-type-action-filter-size: 12px;
+  --wds-type-action-filter-line: 20px;
+  --wds-type-action-filter-spacing: 2px;
+
+  /* === SHADOWS === */
+  --wds-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+}
+
+/* === UTILITY CLASSES === */
+
+/* Display Typography */
+.wds-display-xl {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-display-xl-size);
+  line-height: var(--wds-type-display-xl-line);
+  letter-spacing: var(--wds-type-display-xl-spacing);
+  font-weight: var(--wds-font-weight-regular);
+}
+
+.wds-display-l {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-display-l-size);
+  line-height: var(--wds-type-display-l-line);
+  letter-spacing: var(--wds-type-display-l-spacing);
+  font-weight: var(--wds-font-weight-regular);
+}
+
+.wds-display-m {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-display-m-size);
+  line-height: var(--wds-type-display-m-line);
+  letter-spacing: var(--wds-type-display-m-spacing);
+  font-weight: var(--wds-font-weight-regular);
+}
+
+.wds-display-s {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-display-s-size);
+  line-height: var(--wds-type-display-s-line);
+  letter-spacing: var(--wds-type-display-s-spacing);
+  font-weight: var(--wds-font-weight-regular);
+}
+
+.wds-display-xs {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-display-xs-size);
+  line-height: var(--wds-type-display-xs-line);
+  letter-spacing: var(--wds-type-display-xs-spacing);
+  font-weight: var(--wds-font-weight-regular);
+}
+
+/* Subtitle Typography */
+.wds-subtitle-m {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-subtitle-m-size);
+  line-height: var(--wds-type-subtitle-m-line);
+  letter-spacing: var(--wds-type-subtitle-m-spacing);
+  font-weight: var(--wds-font-weight-bold);
+}
+
+.wds-subtitle-s {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-subtitle-s-size);
+  line-height: var(--wds-type-subtitle-s-line);
+  letter-spacing: var(--wds-type-subtitle-s-spacing);
+  font-weight: var(--wds-font-weight-bold);
+}
+
+/* Body Typography */
+.wds-body-m {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-body-m-size);
+  line-height: var(--wds-type-body-m-line);
+  letter-spacing: var(--wds-type-body-m-spacing);
+  font-weight: var(--wds-font-weight-regular);
+}
+
+.wds-body-m-light {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-body-m-size);
+  line-height: var(--wds-type-body-m-line);
+  letter-spacing: var(--wds-type-body-m-spacing);
+  font-weight: var(--wds-font-weight-light);
+}
+
+.wds-body-m-bold {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-body-m-size);
+  line-height: var(--wds-type-body-m-line);
+  letter-spacing: var(--wds-type-body-m-spacing);
+  font-weight: var(--wds-font-weight-bold);
+}
+
+.wds-body-s {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-body-s-size);
+  line-height: var(--wds-type-body-s-line);
+  letter-spacing: var(--wds-type-body-s-spacing);
+  font-weight: var(--wds-font-weight-regular);
+}
+
+.wds-body-s-light {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-body-s-size);
+  line-height: var(--wds-type-body-s-line);
+  letter-spacing: var(--wds-type-body-s-spacing);
+  font-weight: var(--wds-font-weight-light);
+}
+
+.wds-body-s-bold {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-body-s-size);
+  line-height: var(--wds-type-body-s-line);
+  letter-spacing: var(--wds-type-body-s-spacing);
+  font-weight: var(--wds-font-weight-bold);
+}
+
+/* Disclaimer Typography */
+.wds-disclaimer {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-disclaimer-size);
+  line-height: var(--wds-type-disclaimer-line);
+  letter-spacing: var(--wds-type-disclaimer-spacing);
+  font-weight: var(--wds-font-weight-regular);
+}
+
+.wds-disclaimer-light {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-disclaimer-size);
+  line-height: var(--wds-type-disclaimer-line);
+  letter-spacing: var(--wds-type-disclaimer-spacing);
+  font-weight: var(--wds-font-weight-light);
+}
+
+.wds-disclaimer-bold {
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-disclaimer-size);
+  line-height: var(--wds-type-disclaimer-line);
+  letter-spacing: var(--wds-type-disclaimer-spacing);
+  font-weight: var(--wds-font-weight-bold);
+}
+
+/* Link Styles */
+.wds-link {
+  color: var(--wds-color-offers);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.wds-link:hover {
+  color: var(--wds-color-action-hover-onlight);
+}
+
+.wds-link:focus {
+  outline: 2px solid var(--wds-color-action-focus-onlight);
+  outline-offset: 2px;
+}

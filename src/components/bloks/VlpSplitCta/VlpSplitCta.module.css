@@ -1,0 +1,98 @@
+.section {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 400px;
+}
+
+.panel {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background: var(--wds-color-nissan-black);
+}
+
+.imageWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 60%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 40px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.headline {
+  color: var(--wds-color-nissan-white);
+  text-transform: uppercase;
+  letter-spacing: var(--wds-type-display-xs-spacing);
+}
+
+/* WDS tertiary-dark: column flex + block underline bar via ::after */
+.cta {
+  align-self: flex-start;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 11px;
+  padding-bottom: 3px;
+  color: var(--wds-color-nissan-white);
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-action-button-size);
+  line-height: var(--wds-type-action-button-line);
+  letter-spacing: var(--wds-type-action-button-spacing);
+  font-weight: var(--wds-font-weight-bold);
+  text-transform: uppercase;
+  text-decoration: none;
+  background: transparent;
+  transition: color 200ms;
+}
+
+.cta::after {
+  content: '';
+  display: block;
+  height: 2px;
+  width: 100%;
+  background-color: var(--wds-color-nissan-white);
+  transition: opacity 200ms;
+}
+
+.cta:hover {
+  color: var(--wds-color-action-hover-ondark);
+}
+
+.cta:hover::after {
+  opacity: 0;
+}
+
+.cta:focus-visible {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-ondark);
+}
+
+@media (min-width: 640px) {
+  .section {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .panel {
+    min-height: 480px;
+  }
+}

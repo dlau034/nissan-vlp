@@ -1,0 +1,91 @@
+.section {
+  background: var(--wds-color-nissan-white);
+  padding: 80px 120px;
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Section title — DisplayM, black, centered */
+.title {
+  color: var(--wds-color-nissan-black);
+  text-align: center;
+  /* DisplayM: 32px / Regular / 1.5px — from WDS Typography */
+}
+
+/* CTA row — 4 equal-width buttons spanning full width */
+.actions {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+/* === WDS Primary button — black fill, white text, 100px pill === */
+.btn {
+  flex: 1 0 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1px;
+  min-width: 1px;
+  padding: 12px 40px;
+  border-radius: 100px;
+  background: var(--wds-color-nissan-black);
+  color: var(--wds-color-nissan-white);
+  font-family: var(--wds-font-family-nissan);
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: var(--wds-type-action-button-spacing); /* 2px */
+  font-weight: var(--wds-font-weight-bold);
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.btn:hover {
+  background-color: var(--wds-color-action-hover-onlight);
+}
+
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .section {
+    padding: 64px 40px;
+  }
+
+  .actions {
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    flex: 1 0 calc(50% - 10px);
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 48px 24px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    flex: none;
+    width: 100%;
+  }
+}

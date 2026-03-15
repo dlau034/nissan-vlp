@@ -1,0 +1,99 @@
+/* Accordion Stack */
+.stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Accordion Item */
+.item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Keyline divider — 1px separator between items */
+.divider {
+  height: 1px;
+  background-color: var(--wds-color-keyline-onlight);
+  flex-shrink: 0;
+}
+
+/* Trigger button — the clickable title row */
+.trigger {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 24px 0;
+  text-align: left;
+  border-radius: 4px;
+}
+
+/* Title text */
+.titleText {
+  flex: 1 0 0;
+  font-family: var(--wds-font-family-nissan);
+  font-weight: var(--wds-font-weight-regular);
+  font-size: var(--wds-type-body-m-size);
+  line-height: var(--wds-type-body-m-line);
+  letter-spacing: var(--wds-type-body-m-spacing);
+  color: var(--wds-color-nissan-black);
+}
+
+/* Hover: underline + grey */
+.trigger:hover .titleText {
+  text-decoration: underline;
+  color: var(--wds-color-action-hover-onlight);
+}
+
+/* Focus-visible: blue ring */
+.trigger:focus-visible {
+  outline: 4px solid var(--wds-color-action-focus-onlight);
+  outline-offset: 0;
+}
+
+.trigger:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Icon wrapper — flex-start align, 4px top padding per Figma */
+.iconWrap {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 4px;
+  color: var(--wds-color-nissan-black);
+}
+
+/* Animation wrapper — grid-template-rows trick for smooth height transition */
+.bodyWrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.bodyWrapperOpen {
+  grid-template-rows: 1fr;
+}
+
+/* Direct grid child — must have no padding so the row collapses to true 0 */
+.bodyClip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Body / content area */
+.body {
+  font-family: var(--wds-font-family-nissan);
+  font-weight: var(--wds-font-weight-light);
+  font-size: var(--wds-type-body-s-size);
+  line-height: var(--wds-type-body-s-line);
+  letter-spacing: var(--wds-type-body-s-spacing);
+  color: var(--wds-color-nissan-black);
+  width: 100%;
+  padding-bottom: 24px;
+}

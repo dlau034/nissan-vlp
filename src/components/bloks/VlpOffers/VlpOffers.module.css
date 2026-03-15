@@ -1,0 +1,154 @@
+.section {
+  background: var(--wds-color-nissan-white);
+  padding: 64px 120px;
+}
+
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* Section header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  color: var(--wds-color-nissan-black);
+}
+
+.exploreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--wds-color-nissan-black);
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-subtitle-s-size);
+  line-height: var(--wds-type-subtitle-s-line);
+  letter-spacing: var(--wds-type-subtitle-s-spacing);
+  font-weight: var(--wds-font-weight-bold);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.exploreLink:hover {
+  color: var(--wds-color-action-hover-onlight);
+}
+
+.grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.card {
+  background: var(--wds-color-nissan-white);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--wds-color-keyline-onlight);
+}
+
+.badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  background: var(--wds-color-offers);
+  color: var(--wds-color-nissan-white);
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-body-s-size);
+  font-weight: var(--wds-font-weight-bold);
+  letter-spacing: var(--wds-type-body-s-spacing);
+  text-transform: uppercase;
+  padding: 4px 12px;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--wds-color-nissan-grey);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.model {
+  color: var(--wds-color-nissan-black);
+}
+
+.offerDetail {
+  color: var(--wds-color-nissan-black);
+  flex: 1;
+}
+
+/* WDS Primary CTA — black pill */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 30px;
+  border-radius: 100px;
+  background: var(--wds-color-nissan-black);
+  color: var(--wds-color-nissan-white);
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-action-button-size);
+  line-height: var(--wds-type-action-button-line);
+  letter-spacing: var(--wds-type-action-button-spacing);
+  font-weight: var(--wds-font-weight-bold);
+  text-transform: uppercase;
+  text-decoration: none;
+  align-self: flex-start;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.cta:hover {
+  background-color: var(--wds-color-action-hover-onlight);
+}
+
+.cta:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 64px 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 48px 24px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
