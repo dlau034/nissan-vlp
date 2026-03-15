@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
 import "@/lib/storyblok";
 
+// Always SSR — content is CMS-driven. Static generation at build time would
+// freeze a 404 if no stories were published when the build ran.
+export const dynamic = "force-dynamic";
+
 // Next.js 16: params is a Promise
 interface PageProps {
   params: Promise<{ slug?: string[] }>;
@@ -42,15 +46,4 @@ export default async function Page({ params }: PageProps) {
     />
   );
 }
-
-export async function generateStaticParams() {
-  const sbApi = getStoryblokApi();
-  try {
-    const { data } = await sbApi.get("cdn/links", { version: "published" });
-    return Object.values(data?.links ?? {})
-      .filter((link: any) => !link.is_folder)
-      .map((link: any) => ({ slug: link.slug.split("/") }));
-  } catch {
-    return [];
-  }
-}
+
