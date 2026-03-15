@@ -1,57 +1,52 @@
+/* ─── Section wrapper ─── */
 .section {
   background: var(--wds-color-nissan-white);
-  padding: 64px 120px;
+  padding: 80px 0;
 }
 
 .inner {
   max-width: 1440px;
   margin: 0 auto;
+  padding: 0 120px;
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
 
-/* Section header */
+/* ─── Header — title only ─── */
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
 }
 
 .title {
   color: var(--wds-color-nissan-black);
 }
 
-.exploreLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--wds-color-nissan-black);
-  font-family: var(--wds-font-family-nissan);
-  font-size: var(--wds-type-subtitle-s-size);
-  line-height: var(--wds-type-subtitle-s-line);
-  letter-spacing: var(--wds-type-subtitle-s-spacing);
-  font-weight: var(--wds-font-weight-bold);
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
+/* ─── Carousel viewport ─── */
+.viewport {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch;
 }
 
-.exploreLink:hover {
-  color: var(--wds-color-action-hover-onlight);
+.viewport::-webkit-scrollbar {
+  display: none;
 }
 
-/* Grade cards — gap grid, rounded grey cards */
-.grid {
+/* ─── Track (flex row of cards) ─── */
+.track {
   list-style: none;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  display: flex;
+  gap: 40px;
 }
 
+/* ─── Card ─── */
 .card {
+  /* Desktop: 3 cards visible with 2 gaps of 40px each = 80px total gap */
+  flex: 0 0 calc((100% - 80px) / 3);
+  scroll-snap-align: start;
   background: #f9f9f9;
   border-radius: 10px;
   overflow: hidden;
@@ -59,6 +54,7 @@
   flex-direction: column;
 }
 
+/* ─── Card image — fill by width, natural height ─── */
 .imageWrap {
   width: 100%;
   overflow: hidden;
@@ -71,11 +67,12 @@
   height: auto;
 }
 
-.cardContent {
+/* ─── Card body ─── */
+.cardBody {
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   flex: 1;
 }
 
@@ -83,30 +80,97 @@
   color: var(--wds-color-nissan-black);
 }
 
-.price {
-  color: var(--wds-color-nissan-black);
+/* ─── Price columns ─── */
+.prices {
+  display: flex;
+  gap: 20px;
 }
 
-.tags {
-  list-style: none;
+.priceCol {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  flex: 1;
 }
 
-.tag {
+.priceValue {
   color: var(--wds-color-nissan-black);
 }
 
-/* WDS Primary pill button — black fill, full width */
-.cta {
-  margin-top: 16px;
+.priceLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--wds-color-nissan-black);
+}
+
+.disclaimerIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: #666;
+  cursor: default;
+}
+
+/* ─── Feature list ─── */
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.featureList {
+  list-style: disc;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.featureItem {
+  color: var(--wds-color-nissan-black);
+}
+
+.seeMoreBtn {
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  color: var(--wds-color-nissan-black);
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-action-button-size);
+  font-weight: var(--wds-font-weight-bold);
+  letter-spacing: var(--wds-type-action-button-spacing);
+  text-transform: uppercase;
+  text-align: left;
+  transition: color 150ms;
+}
+
+.seeMoreBtn:hover {
+  color: var(--wds-color-action-hover-onlight);
+}
+
+/* ─── Finance Calculator link ─── */
+.financeLink {
   display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--wds-color-nissan-black);
+  text-decoration: none;
+  transition: color 150ms;
+}
+
+.financeLink:hover {
+  color: var(--wds-color-action-hover-onlight);
+}
+
+/* ─── CTA pill button (WDS primary) ─── */
+.cta {
+  display: flex;
   align-items: center;
   justify-content: center;
   padding: 12px 30px;
-  border-radius: 100px;
+  border-radius: 40px;
   background: var(--wds-color-nissan-black);
   color: var(--wds-color-nissan-white);
   font-family: var(--wds-font-family-nissan);
@@ -116,8 +180,8 @@
   font-weight: var(--wds-font-weight-bold);
   text-transform: uppercase;
   text-decoration: none;
-  width: 100%;
   cursor: pointer;
+  width: 100%;
   transition: background-color 200ms;
 }
 
@@ -130,28 +194,127 @@
   box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
 }
 
-/* Responsive */
+/* ─── Compare link ─── */
+.compareLink {
+  display: block;
+  text-align: center;
+  color: var(--wds-color-nissan-black);
+  font-family: var(--wds-font-family-nissan);
+  font-size: var(--wds-type-action-button-size);
+  letter-spacing: var(--wds-type-action-button-spacing);
+  font-weight: var(--wds-font-weight-bold);
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 150ms;
+}
+
+.compareLink:hover {
+  color: var(--wds-color-action-hover-onlight);
+}
+
+/* ─── Bottom bar: dots (left) + arrows (right) ─── */
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dot,
+.dotActive {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid var(--wds-color-nissan-black);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 150ms;
+}
+
+.dotActive {
+  background: var(--wds-color-nissan-black);
+}
+
+.navArrows {
+  display: flex;
+  gap: 12px;
+}
+
+.arrowBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--wds-color-nissan-black);
+  background: var(--wds-color-nissan-white);
+  color: var(--wds-color-nissan-black);
+  cursor: pointer;
+  transition: background-color 200ms, color 200ms;
+}
+
+.arrowBtn:hover:not(:disabled) {
+  background: var(--wds-color-nissan-black);
+  color: var(--wds-color-nissan-white);
+}
+
+.arrowBtn:disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+.arrowBtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--wds-color-action-focus-onlight);
+}
+
+/* ─── Responsive ─── */
 @media (max-width: 1024px) {
-  .section {
-    padding: 64px 40px;
+  .inner {
+    padding: 0 40px;
   }
 
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .card {
+    /* Tablet: 2 cards with 1 gap of 24px */
+    flex: 0 0 calc((100% - 24px) / 2);
+  }
+
+  .track {
+    gap: 24px;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .section {
-    padding: 48px 24px;
+    padding: 48px 0;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
+  .inner {
+    padding: 0 24px;
+    gap: 24px;
   }
 
-  .header {
+  .card {
+    /* Mobile: 1 card + 20px peek of next card */
+    flex: 0 0 calc(100% - 40px);
+  }
+
+  .track {
+    gap: 16px;
+  }
+
+  /* Arrows + dots stack centered on mobile */
+  .bottomBar {
     flex-direction: column;
-    align-items: flex-start;
+    gap: 16px;
+    align-items: center;
   }
 }
