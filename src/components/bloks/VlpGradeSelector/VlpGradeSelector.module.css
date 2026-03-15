@@ -221,9 +221,9 @@
 
 .dots {
   display: flex;
+  flex: 0 0 300px;
   gap: 8px;
   align-items: center;
-  max-width: 300px;
 }
 
 /* Each dash: equal share of available width, 2px tall bar */
