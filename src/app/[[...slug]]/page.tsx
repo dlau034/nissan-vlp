@@ -1,6 +1,6 @@
 import { draftMode } from "next/headers";
 import { notFound } from "next/navigation";
-import { getStoryblokApi, StoryblokStory } from "@storyblok/react/rsc";
+import { StoryblokStory } from "@storyblok/react/rsc";
 import "@/lib/storyblok";
 
 // Always SSR — content is CMS-driven. Static generation at build time would
@@ -13,23 +13,29 @@ interface PageProps {
 }
 
 async function fetchStory(slug: string, isDraft: boolean) {
-  const sbApi = getStoryblokApi();
-  // Always use draft in development; use published in production unless draft mode is enabled
-  const version = isDraft || process.env.NODE_ENV === "development" ? "draft" : "published";
+  const token = process.env.NEXT_PUBLIC_STORYBLOK_TOKEN;
+  const version =
+    isDraft || process.env.NODE_ENV === "development" ? "draft" : "published";
+
   try {
-    const { data } = await sbApi.get(`cdn/stories/${slug}`, {
-      version,
-      resolve_relations: [],
-    });
-    return data.story;
-  } catch {
+    const res = await fetch(
+      `https://api.storyblok.com/v2/cdn/stories/${slug}?token=${token}&version=${version}`,
+      { cache: "no-store" }
+    );
+    if (!res.ok) {
+      console.error("[fetchStory] HTTP error:", res.status, res.statusText, "slug:", slug);
+      return null;
+    }
+    const data = await res.json();
+    return data.story ?? null;
+  } catch (err) {
+    console.error("[fetchStory] fetch failed for slug:", slug, err);
     return null;
   }
 }
 
 export default async function Page({ params }: PageProps) {
   const { isEnabled: isDraft } = await draftMode();
-  // Await params — required in Next.js 16
   const { slug: slugArr } = await params;
   const slug = slugArr?.join("/") ?? "home";
 
@@ -46,4 +52,3 @@ export default async function Page({ params }: PageProps) {
     />
   );
 }
-
