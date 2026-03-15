@@ -60,15 +60,15 @@
 }
 
 .imageWrap {
-  position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--wds-color-nissan-grey);
 }
 
 .image {
-  object-fit: cover;
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .cardContent {

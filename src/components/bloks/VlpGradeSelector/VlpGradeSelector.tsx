@@ -38,7 +38,9 @@ export default function VlpGradeSelector({ blok }: { blok: any }) {
                       <Image
                         src={grade.image.filename}
                         alt={grade.image.alt || grade.grade_name}
-                        fill
+                        width={0}
+                        height={0}
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className={styles.image}
                       />
                     </div>
