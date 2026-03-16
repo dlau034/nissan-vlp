@@ -47,7 +47,7 @@
   /* Desktop: 3 cards visible with 2 gaps of 40px each = 80px total gap */
   flex: 0 0 calc((100% - 80px) / 3);
   scroll-snap-align: start;
-  background: #f9f9f9;
+  background: var(--wds-color-background-grey);
   border-radius: 10px;
   overflow: hidden;
   display: flex;

@@ -7,7 +7,7 @@
 .inner {
   max-width: 1440px;
   margin: 0 auto;
-  background: #f8f8f9;
+  background: var(--wds-color-background-grey);
   border-radius: 10px;
   padding: 40px;
 }

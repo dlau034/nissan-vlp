@@ -1,5 +1,5 @@
 .section {
-  background: #f8f8f9;
+  background: var(--wds-color-background-grey);
   display: grid;
   grid-template-columns: 1fr;
   min-height: 480px;

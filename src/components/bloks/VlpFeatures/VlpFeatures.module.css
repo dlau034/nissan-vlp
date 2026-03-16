@@ -4,7 +4,7 @@
 
 /* Background variants */
 .bgGrey {
-  background: #f9f9f9;
+  background: var(--wds-color-background-grey);
 }
 
 .bgWhite {
