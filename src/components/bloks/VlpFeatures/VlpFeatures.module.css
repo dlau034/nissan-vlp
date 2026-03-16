@@ -60,6 +60,11 @@
   gap: 40px;
 }
 
+/* 2 cards: fill both columns equally instead of leaving a gap */
+.grid:has(.card:nth-child(2):last-child) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .card {
   display: flex;
   flex-direction: column;
