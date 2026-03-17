@@ -65,6 +65,19 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+/* 4-column layout variant */
+.grid4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid4:has(.card:nth-child(2):last-child) {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid4:has(.card:nth-child(3):last-child) {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .card {
   display: flex;
   flex-direction: column;
@@ -103,7 +116,8 @@
     padding: 64px 40px;
   }
 
-  .grid {
+  .grid,
+  .grid4 {
     grid-template-columns: repeat(2, 1fr);
   }
 

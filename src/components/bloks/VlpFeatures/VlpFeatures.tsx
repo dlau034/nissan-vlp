@@ -32,7 +32,7 @@ export default function VlpFeatures({ blok }: { blok: any }) {
 
         {/* Feature cards */}
         {blok.items?.length > 0 && (
-          <ul className={styles.grid}>
+          <ul className={`${styles.grid} ${blok.columns === "4" ? styles.grid4 : ""}`}>
             {blok.items.map((item: any) => (
               <li key={item._uid} className={styles.card}>
                 {item.image?.filename && (
